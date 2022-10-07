@@ -4,24 +4,78 @@
         <script>
             mermaid.initialize({ startOnLoad: true });
         </script>
-        <h5>Ejemplo 02</h5>
+        <h1>DESARROLLO DE SOFTWARE POR MODELOS </h1>
+        
+        <h2>Pasar el modelo PIM a un modelo PSM utilizando la librería  <a href="https://mermaid-js.github.io/mermaid/#/"> Mermaid</a> </h2>
+        <ul>
+            <li>Modelo PIM </li> 
+        </ul>
+        <img src="ModeloPIM.jpg" alt="Modelo PIM" width="700"/>
+         <ul>
+            <li>Modelo PSM </li> 
+        </ul>
         <div class="mermaid">
           classDiagram
-    class BankAccount
-    BankAccount : +String id
-    BankAccount : +Bigdecimal balance
-    BankAccount : +deposit(amount)
-    BankAccount : +withdrawal(amount)
+          direction LR  %%RL-RightLeft....LR-LeftRight
+      
+    %%Creacion de clases
+    class Equipo
+    Equipo : +String nombre
+    Equipo : +TipoDeporte tipoDeporte
+    Equipo : +String siglas
+    Equipo : +getNombre() String    
+    Equipo : +setNombre(nombre String) 
+    Equipo : +getTipoDeporte() TipoDeporte    
+    Equipo : +setTipoDeporte(tipoDeporte TipoDeporte) 
+    Equipo : +getSiglas() String    
+    Equipo : +setSiglas(siglas String) 
 
-    class Persona
-    Persona : +String nombre
-    Persona : +String apellido
-    Persona : +String direccion
-    Persona : +Int edad
+
+    class Jugador
+    Jugador : +String nombre
+    Jugador : +String apellido
+    Jugador : +Int edad
+    Jugador : +getNombre() String    
+    Jugador : +setNombre(nombre String) 
+    Jugador : +getApellido() String    
+    Jugador : +setApellido(apellido String) 
+    Jugador : +getEdad() Int    
+    Jugador : +setEdad(edad int) 
     
+    class Sancion
+    Sancion : +String observacion
+    Sancion : +Long multa
+    Sancion : +TipoSancion tipoSancion
+    Sancion : +getObservacion() String    
+    Sancion : +setObservacion(observacion String) 
+    Sancion : +getMulta() Long    
+    Sancion : +setMulta(multa Long) 
+    Sancion : +getTipoSancion() TipoSancion    
+    Sancion : +setTipoSancion(tipoSancion TipoSancion)
     
-    Persona "1" --> "*" BankAccount
+    %%Anotaciones en las clases
+    class TipoDeporte{
+    &lt;&lt;enumeration&gt;&gt;
+    BASQUET
+    FUTBOL
+    NATACION
+    }
+    
+    %%Anotaciones en las clases
+    class TipoSancion{
+    &lt;&lt;enumeration&gt;&gt;
+    LEVE
+    SEVERA
+    }
+    
+    %%Relaciones entre las clases
+    Equipo "1" --> "0..*" Jugador   
+    Jugador "1" --> "0..*" Sancion    
+    Equipo .. TipoDeporte    
+    Sancion .. TipoSancion
+
 
         </div>
+
     </body>
 </html>
